@@ -1,0 +1,27 @@
+// Approach 1: normal traversal tc worst case : O(n^2)
+
+//Arpproach 2: Binary Search : T.C. : O(log (m*n))   //only the catch was converting the mid and checking its position in the matrix, for row do mid/no. of col(n), for col do mid%no. of col
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int start = 0;
+        int end = n*m - 1;
+
+        while(start <= end){
+            int mid = start + (end - start)/2;
+
+            if(matrix[mid/n][mid%n] > target){
+                end = mid - 1;
+            }
+
+            else if(matrix[mid/n][mid%n] < target){
+                start = mid + 1;
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+    }
+}
