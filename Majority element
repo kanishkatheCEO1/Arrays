@@ -1,0 +1,34 @@
+//My approach  T.C.: O(nlogn) because we are sorting
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length/2];
+    }
+}
+
+
+//then there is a hashmap approach which will take T.C.: O(n) but S.C.:O(n)
+
+//Approach 3: Boyer-Moore voting algorithm
+
+class Solution {
+    public int majorityElement(int[] nums) { //Boyer-moore voting algorithm
+        int candidate = 0;
+        int count = 0;
+
+        for(int num : nums){
+            if(count == 0){
+                candidate = num;
+            }
+
+            if(num == candidate){
+                count += 1;
+            }
+            else{
+                count -= 1;
+            }
+        }
+
+        return candidate;
+    }
+}
